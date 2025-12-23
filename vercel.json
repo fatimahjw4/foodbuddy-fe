@@ -1,10 +1,9 @@
 {
-  "redirects": [
-    { "source": "/beranda", "destination": "/", "permanent": false }
-  ],
   "routes": [
-    { "source": "/", "destination": "/pages/beranda.html" },
-    { "source": "/rekomendasi", "destination": "/pages/rekomendasi.html" },
-    { "source": "/admin", "destination": "/pages/index.html" }
+    { "src": "/", "dest": "/pages/beranda.html" },
+    { "src": "/beranda", "dest": "/" },
+    { "src": "/admin", "dest": "/pages/index.html" },
+    { "src": "/rekomendasi", "dest": "/pages/rekomendasi.html" },
+    { "src": "/(.*)", "dest": "/pages/$1" }
   ]
 }
