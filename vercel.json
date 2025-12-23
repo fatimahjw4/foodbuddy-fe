@@ -1,6 +1,9 @@
 {
   "routes": [
     { "src": "/", "dest": "/pages/beranda.html" },
+    { "src": "/admin", "dest": "/pages/index.html" },
+    { "src": "/rekomendasi", "dest": "/pages/rekomendasi.html" },
     { "src": "/(.*)", "dest": "/pages/$1" }
   ]
 }
+
