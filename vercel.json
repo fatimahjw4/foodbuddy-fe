@@ -2,7 +2,7 @@
   "redirects": [
     { "source": "/beranda", "destination": "/", "permanent": false }
   ],
-  "rewrites": [
+  "routes": [
     { "source": "/", "destination": "/pages/beranda.html" },
     { "source": "/rekomendasi", "destination": "/pages/rekomendasi.html" },
     { "source": "/admin", "destination": "/pages/index.html" }
