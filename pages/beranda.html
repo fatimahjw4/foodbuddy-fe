@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodBuddy - Beranda</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="user-page bg-gray-50">
+  <!-- ================= NAVBAR ================= -->
+  <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b">
+    <div class="max-w-7xl mx-auto px-6 md:px-20 flex justify-between items-center py-4">
+
+      <!-- LOGO -->
+      <div class="flex items-center space-x-2 text-green-600 font-bold">
+        <span class="text-3xl">🥗</span>
+        <span class="text-2xl">FoodBuddy</span>
+      </div>
+
+      <!-- MENU DESKTOP -->
+      <ul class="hidden md:flex space-x-8 font-medium">
+        <li>
+          <a href="#" class="text-green-600 font-bold border-b-2 border-green-600 pb-1">
+            Beranda
+          </a>
+        </li>
+        <li><a href="/rekomendasi" class="hover:text-green-600 transition">Rekomendasi</a></li>
+        <li><a href="#tentang" class="hover:text-green-600 transition">Tentang</a></li>
+      </ul>
+
+      <!-- BUTTON MOBILE -->
+      <button id="menu-toggle"
+        class="md:hidden text-green-600 text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t">
+      <div class="px-4 py-4 space-y-2 font-medium">
+        <a href="#" class="block px-3 py-2 rounded-md bg-green-50 text-green-600 font-semibold">
+          Beranda
+        </a>
+        <a href="/rekomendasi" class="block px-3 py-2 rounded-md hover:bg-green-50 hover:text-green-600">
+          Rekomendasi
+        </a>
+        <a href="#tentang" class="block px-3 py-2 rounded-md hover:bg-green-50 hover:text-green-600">
+          Tentang
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Text Overlay di Atas Gambar) -->
+  <section class="relative h-screen">
+    <!-- Gambar Background -->
+    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80"
+         alt="Makanan Sehat"
+         class="absolute inset-0 w-full h-full object-cover">
+
+    <!-- Overlay Gelap -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+    <!-- Konten Teks -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-20 h-full flex flex-col justify-center text-left md:text-left">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 fade-in fade-in-delay-1">
+        Teman Setia Rekomendasi Menu Sehat Harianmu
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 mb-6 fade-in fade-in-delay-2">
+        FoodBuddy bantu kamu memilih makanan sehat sesuai kebutuhan kalori dan target dietmu.
+      </p>
+      <!-- Tombol -->
+      <div class="inline-block">
+          <a href="/rekomendasi"
+            class="border-gradient-to-r from-green-500 to-orange-500 text-white font-semibold py-3 px-6 rounded-lg bg-green-600 
+                  hover:text-white hover:bg-gradient-to-r hover:from-green-500 hover:to-orange-500 transition inline-block fade-in fade-in-delay-3">
+            Dapatkan Rekomendasi
+          </a>
+      <div>
+    </div>
+
+      <!-- Floating Bubbles Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div class="bubble w-40 h-40 bg-green-400 top-20 left-16"></div>
+      <div class="bubble w-64 h-64 bg-orange-300 top-1/3 right-24 bubble-delay-1"></div>
+      <div class="bubble w-24 h-24 bg-emerald-300 bottom-24 left-1/3 bubble-delay-2"></div>
+    </div>
+  </section>
+
+  <!-- Tentang FoodBuddy -->
+   <div class="transform translate-y-6 transition-all duration-700 card-animate">
+    <section id="tentang" class="py-14 bg-gray-100 relative overflow-hidden">
+      <div class="absolute -top-28 -left-28 w-[420px] h-[420px] bg-gradient-to-r from-green-400 to-orange-300 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-8 md:px-16">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">
+          Tentang FoodBuddy
+        </h2>
+
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- Deskripsi Utama -->
+          <div class="md:w-1/2">
+            <div class="relative rounded-xl h-full hover:shadow-lg hover:scale-[1.02] transition transform">
+
+              <!-- Border Gradasi -->
+              <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-green-500 to-orange-500 p-[1px] pointer-events-none"></div>
+
+              <!-- Konten Card -->
+              <div class="relative bg-white rounded-xl p-5 md:p-6 h-full">
+                <h3 class="text-lg font-bold text-gray-800 mb-3">
+                  Apa itu FoodBuddy?
+                </h3>
+                <p class="text-gray-600 mb-3 text-sm text-justify leading-relaxed">
+                  FoodBuddy adalah platform rekomendasi menu makanan harian yang membantu pengguna
+                  memilih menu sesuai dengan kebutuhan nutrisi dan tujuan diet, seperti
+                  <span class="font-medium">bulking</span>, 
+                  <span class="font-medium">maintenance</span>, dan 
+                  <span class="font-medium">cutting</span>.
+                </p>
+                <p class="text-gray-600 mb-3 text-sm text-justify leading-relaxed">
+                  Sistem ini memanfaatkan data profil pengguna seperti usia, berat badan, tinggi badan,
+                  jenis kelamin, dan tingkat aktivitas untuk menghitung kebutuhan energi dan makronutrien,
+                  kemudian menyusun rekomendasi menu yang mendekati kebutuhan tersebut.
+                </p>
+                <p class="text-gray-600 text-sm text-justify leading-relaxed">
+                  Rekomendasi menu FoodBuddy disusun menggunakan pendekatan 
+                  <span class="font-medium">balanced healthy plate</span> serta didukung oleh
+                  algoritma <span class="font-medium">Machine Learning (K-Nearest Neighbor)</span>.
+                  FoodBuddy berfungsi sebagai alat bantu pengambilan keputusan dan bukan pengganti
+                  konsultasi dengan ahli gizi.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fitur Unggulan -->
+          <div class="md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <!-- Card 1 -->
+            <div class="bg-white rounded-xl shadow-md p-5 text-center border-2 border-purple-400 hover:shadow-lg hover:scale-105 transition">
+              <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-calculator text-purple-600 text-xl"></i>
+              </div>
+              <h4 class="text-base font-bold text-gray-800 mb-1">Profil & Tujuan Diet</h4>
+              <p class="text-gray-600 text-sm">
+                Data pengguna digunakan sebagai dasar perhitungan kebutuhan energi dan nutrisi harian
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-xl shadow-md p-5 text-center border-2 border-green-400 hover:shadow-lg hover:scale-105 transition">
+              <div class="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-utensils text-green-600 text-xl"></i>
+              </div>
+              <h4 class="text-base font-bold text-gray-800 mb-1">Rekomendasi Menu Harian</h4>
+              <p class="text-gray-600 text-sm">
+                Menu disusun mendekati target kalori dan makronutrien pengguna secara realistis
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-xl shadow-md p-5 text-center border-2 border-blue-400 hover:shadow-lg hover:scale-105 transition">
+              <div class="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+              </div>
+              <h4 class="text-base font-bold text-gray-800 mb-1">Evaluasi & Konsistensi</h4>
+              <p class="text-gray-600 text-sm">
+                Sistem menjaga rekomendasi tetap berada dalam batas nutrisi yang aman
+              </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white rounded-xl shadow-md p-5 text-center border-2 border-orange-400 hover:shadow-lg hover:scale-105 transition">
+              <div class="bg-yellow-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-heart text-yellow-600 text-xl"></i>
+              </div>
+              <h4 class="text-base font-bold text-gray-800 mb-1">
+                Balanced Healthy Plate
+              </h4>
+              <p class="text-gray-600 text-sm">
+                Pembagian karbohidrat, protein, lemak, dan serat secara seimbang di setiap waktu makan
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+
+
+  <!-- Quotes Kesehatan -->
+   <div class="transform translate-y-6 transition-all duration-700 card-animate">
+    <section class="py-20 bg-green-50">
+      <div class="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-gradient-to-r from-emerald-400 to-lime-300 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-6 md:px-20">
+        <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Inspirasi Kesehatan</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <!-- Quote 1 -->
+          <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition transform hover:-translate-y-1">
+            <p class="text-gray-700 italic mb-4">"Makan dengan porsi seimbang dan variasi warna di piringmu dapat meningkatkan energi, menjaga kesehatan, dan membuatmu merasa lebih baik setiap hari."</p>
+            <span class="block text-right font-semibold text-gray-800">– Hippocrates</span>
+          </div>
+
+          <!-- Quote 2 -->
+          <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition transform hover:-translate-y-1">
+            <p class="text-gray-700 italic mb-4">"Kesehatan bukanlah segala-galanya, tapi tanpa kesehatan, segala-galanya adalah apa-apa."</p>
+            <span class="block text-right font-semibold text-gray-800">– Mahatma Gandhi</span>
+          </div>
+
+          <!-- Quote 3 -->
+          <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition transform hover:-translate-y-1">
+            <p class="text-gray-700 italic mb-4">"Makanan adalah obat terbaik. Nutrisi yang tepat akan memperbaiki kesehatanmu."</p>
+            <span class="block text-right font-semibold text-gray-800">– Dr. Mark Hyman</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Artikel Kesehatan (Gaya Portal Berita) -->
+    <div class="transform translate-y-6 transition-all duration-700 card-animate">
+      <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-20">
+          <h2 class="text-3xl font-bold text-gray-800 mb-3 text-center">Artikel Kesehatan Terbaru</h2>
+          <p class="text-center text-gray-600 mb-12">
+            Tips, panduan, dan informasi terbaru tentang nutrisi dan gaya hidup sehat
+          </p>
+          <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Artikel 1 -->
+              <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-2 transition transform duration-300">
+                <img src="https://mmc.tirto.id/image/otf/1240x0,q80/2019/04/16/ilustrasi-junk-food-istockphoto_ratio-16x9.jpg" 
+                    alt="Junk Food"
+                    class="w-full h-56 object-cover">
+                <div class="p-6">
+                  <span class="inline-block bg-blue-100 text-blue-600 text-sm font-medium px-3 py-1 rounded-full mb-4">Psikologi Gizi</span>
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-3">Cara Mengatasi Keinginan Makan Junk Food</h3>
+                  <p class="text-gray-600 mb-4">
+                    Pelajari bagaimana mengendalikan dorongan untuk mengonsumsi makanan cepat saji dengan pendekatan psikologis yang sehat.
+                  </p>
+                  <a href="https://www.cnnindonesia.com/gaya-hidup/20240927143919-255-1149109/7-cara-menghentikan-kebiasaan-makan-junk-food-cegah-penyakit-kronis" 
+                    target="_blank"
+                    class="text-green-600 font-semibold hover:text-green-700 transition">
+                    Baca Selengkapnya →
+                  </a>
+                </div>
+              </article>
+
+            <!-- Artikel 2 -->
+              <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-2 transition transform duration-300">
+                <img src="https://akcdn.detik.net.id/community/media/visual/2015/01/20/050a658c-71a0-4bd6-b2e5-0a9c6023505e.jpg?w=700&q=90" 
+                    alt="Air Minum"
+                    class="w-full h-56 object-cover">
+                <div class="p-6">
+                  <span class="inline-block bg-teal-100 text-teal-600 text-sm font-medium px-3 py-1 rounded-full mb-4">Kesehatan</span>
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-3">Pentingnya Hidrasi: Berapa Banyak Air yang Harus Anda Minum?</h3>
+                  <p class="text-gray-600 mb-4">
+                    Air adalah elemen penting bagi tubuh. Ketahui kebutuhan cairan harian dan tanda-tanda dehidrasi yang perlu diwaspadai.
+                  </p>
+                  <a href="https://www.healthline.com/nutrition/how-much-water-should-you-drink-per-day" target="_blank" 
+                    target="_blank"
+                    class="text-green-600 font-semibold hover:text-green-700 transition">
+                    Baca Selengkapnya →
+                  </a>
+                </div>
+              </article>
+
+              <!-- Artikel 3 -->
+              <article class="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-2 transition transform duration-300">
+                <img src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1600056508/attached_image/pilihan-menu-sarapan-sehat-agar-tubuh-berenergi-0-alodokter.jpg" 
+                    alt="Sarapan Sehat"
+                    class="w-full h-56 object-cover">
+                <div class="p-6">
+                  <span class="inline-block bg-orange-100 text-orange-600 text-sm font-medium px-3 py-1 rounded-full mb-4">Resep</span>
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-3">Resep Sarapan Sehat yang Mengenyangkan</h3>
+                  <p class="text-gray-600 mb-4">
+                    Mulai pagi dengan energi positif melalui resep sarapan sehat dan bergizi seimbang yang mudah dibuat di rumah.
+                  </p>
+                  <a href="https://hellosehat.com/nutrisi/fakta-gizi/menu-sarapan-sehat/" 
+                    target="_blank"
+                    class="text-green-600 font-semibold hover:text-green-700 transition">
+                    Baca Selengkapnya →
+                  </a>
+                </div>
+              </article>
+            </div>
+        </div>
+      </section>
+    </div>
+
+     <!-- Footer -->
+      <footer class="bg-gray-800 text-gray-200 py-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+          <!-- Brand -->
+          <div class="text-center md:text-left">
+            <h3 class="text-xl font-bold text-white">FoodBuddy</h3>
+            <p class="text-gray-400 text-sm mt-1">
+              © 2025 FoodBuddy. All rights reserved.
+            </p>
+          </div>
+      </div>
+    </footer>
+
+  <!-- Mobile Layout -->
+    <script>
+    const toggleBtn = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Auto close kalau klik menu
+    document.querySelectorAll("#mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+  </script>
+
+ <!-- Animate -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const cards = document.querySelectorAll(".card-animate");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+          }
+        });
+      }, { threshold: 0.2 });
+
+      cards.forEach(card => observer.observe(card));
+    });
+    </script>
+</body>
+</html>

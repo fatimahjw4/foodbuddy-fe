@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Data Makanan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex min-h-screen">
+    <aside class="sidebar w-72 text-white flex flex-col">
+        <div class="p-6 text-center font-bold text-2xl border-b border-green-700">
+            <span class="text-4xl mb-2">🥗</span>
+            <div>FoodBuddy</div>
+        </div>
+        <nav class="flex-1 mt-6">
+            <a href="/dashboard" class="flex items-center px-6 py-3 hover:bg-green-700 rounded transition-colors">
+                <i class='bx bx-grid-alt mr-3 text-lg'></i> Dashboard
+            </a>
+            <a href="/kelola" class="flex items-center px-6 py-3 hover:bg-green-700 rounded transition-colors active">
+                <i class='bx bx-data mr-3 text-lg'></i> Kelola Data Makanan
+            </a>
+            <a href="#" id="logoutBtn" class="flex items-center px-6 py-3 hover:bg-green-700 rounded transition-colors">
+                <i class='bx bx-log-out mr-3 text-lg'></i> Logout
+            </a>
+        </nav>
+        <div class="p-4 border-t border-green-700 mt-auto text-center text-xs text-green-200">
+            © 2025 FoodBuddy
+        </div>
+    </aside>
+
+    <main class="flex-1 p-8">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">🍽️ Daftar Makanan</h1>
+                <p class="text-gray-600 leading-relaxed">
+                    Berikut adalah daftar makanan beserta kandungan gizinya.
+                </p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                <p class="text-gray-800 font-semibold leading-tight" id="username"></p>
+                <p class="text-sm text-gray-500">Admin Panel</p>
+                </div>
+                <a href="/profile">
+                <img id="profile-pic" src="" style="opacity:0;"
+                    class="w-12 h-12 rounded-full border-2 border-green-500 object-cover object-center bg-white hover:opacity-80 transition shadow-sm">
+                </a>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-3">
+
+                    <div class="relative">
+                        <i class='bx bx-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-lg'></i>
+
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Cari nama makanan..." 
+                            class="border border-gray-300 pl-10 pr-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400 text-sm"
+                            oninput="fetchMakanan()"
+                        >
+                    </div>
+
+                    <select id="kategoriFilter" class="border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400 text-sm" onchange="fetchMakanan()">
+                        <option value="">Semua Kategori</option>
+                        <option value="Karbohidrat">Karbohidrat</option>
+                        <option value="Protein">Protein</option>
+                        <option value="Kombinasi Utama">Kombinasi Utama</option>
+                        <option value="Lauk Campuran">Lauk Campuran</option>
+                        <option value="Sayur & Buah">Sayur & Buah</option>
+                        <option value="Minuman & Snack">Minuman & Snack</option>
+                    </select>
+
+                    <select id="jenisFilter" class="border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400 text-sm" onchange="fetchMakanan()">
+                        <option value="">Semua Jenis</option>
+                        <option value="Real Food">Real Food</option>
+                        <option value="Olahan">Olahan</option>
+                    </select>
+                </div>
+            <button id="openModalBtn" onclick="openModal()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors font-semibold inline-flex items-center">
+                <i class='bx bx-plus mr-1'></i> Tambah Data
+            </button>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-lg overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 table-auto" id="makananTable">
+                <thead class="bg-green-100">
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <th class="text-left">Makanan</th>
+                        <th class="text-left">Kategori</th>
+                        <th class="text-left">Jenis Makanan</th>
+                        <th class="text-right">Kalori Sajian</th>
+                        <th class="text-right">Berat Sajian (g)</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200" id="makananTableBody">
+                    </tbody>
+            </table>
+
+            <div class="flex justify-between items-center mt-4">
+                <div id="paginationInfo" class="text-sm text-gray-600">
+                    </div>
+                <div id="paginationControls" class="flex space-x-2">
+                    <button onclick="changePage(-1)" class="px-3 py-1 text-sm rounded-lg border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-50" id="prevPageBtn" disabled>
+                        <i class='bx bx-chevron-left'></i> Sebelumnya
+                    </button>
+                    <span id="currentPageDisplay" class="px-3 py-1 text-sm rounded-lg bg-green-500 text-white">1</span>
+                    <button onclick="changePage(1)" class="px-3 py-1 text-sm rounded-lg border border-gray-300 bg-white hover:bg-gray-100 disabled:opacity-50" id="nextPageBtn">
+                        Berikutnya <i class='bx bx-chevron-right'></i>
+                    </button>
+                </div>
+            </div>
+            </div>
+    </main>
+
+    <div id="mainDataModal" class="hidden fixed inset-0 flex items-center justify-center z-50 modal-bg">
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-4xl relative">
+            <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-red-500" onclick="hideModal()">
+                <i class='bx bx-x text-2xl'></i>
+            </button>
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800" id="modalTitle">Tambah Data Makanan</h2>
+            
+            <form id="makananForm" class="space-y-4">
+                <input type="hidden" id="foodId" name="id">
+
+                <div class="border-b border-gray-200">
+                    <nav class="flex space-x-4" id="tabNav">
+                        <button type="button" class="tab-button active pb-2 px-1 font-semibold text-gray-600 hover:text-orange-500 transition-colors" data-target="umum">Umum & Sajian</button>
+                        <button type="button" class="tab-button pb-2 px-1 font-semibold text-gray-600 hover:text-orange-500 transition-colors" data-target="nutrisi-g">Nutrisi /100g</button>
+                        <button type="button" class="tab-button pb-2 px-1 font-semibold text-gray-600 hover:text-orange-500 transition-colors" data-target="nutrisi-s">Nutrisi /Sajian</button>
+                    </nav>
+                </div>
+
+                <div class="tab-content pt-4">
+                    
+                    <div id="umum" class="tab-pane">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="Makanan" class="block text-sm font-medium text-gray-700">Nama Makanan</label>
+                                <input type="text" id="Makanan" name="Makanan" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400">
+                            </div>
+                            <div>
+                                <label for="Kategori" class="block text-sm font-medium text-gray-700">Kategori</label>
+                                <select id="Kategori" name="Kategori" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400">
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Karbohidrat">Karbohidrat</option>
+                                    <option value="Protein">Protein</option>
+                                    <option value="Kombinasi Utama">Kombinasi Utama</option>
+                                    <option value="Lauk Campuran">Lauk Campuran</option>
+                                    <option value="Sayur & Buah">Sayur & Buah</option>
+                                    <option value="Minuman & Snack">Minuman & Snack</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Jenis_Makanan" class="block text-sm font-medium text-gray-700">Jenis Makanan</label>
+                                <select id="Jenis_Makanan" name="Jenis_Makanan" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400">
+                                    <option value="Real Food">Real Food</option>
+                                    <option value="Olahan">Olahan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="Berat_Sajian_Standar_g" class="block text-sm font-medium text-gray-700">Berat Sajian Standar (gram)</label>
+                                <input type="number" step="0.01" id="Berat_Sajian_Standar_g" name="Berat_Sajian_Standar_g" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="nutrisi-g" class="tab-pane hidden">
+                        <p class="text-gray-500 mb-4">Input nutrisi per 100 gram (nilai mentah).</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div><label for="Kalori_g" class="block text-sm font-medium text-gray-700">Kalori /100g</label><input type="number" step="0.01" id="Kalori_g" name="Kalori_g" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Protein_g" class="block text-sm font-medium text-gray-700">Protein /100g</label><input type="number" step="0.01" id="Protein_g" name="Protein_g" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Lemak_g" class="block text-sm font-medium text-gray-700">Lemak /100g</label><input type="number" step="0.01" id="Lemak_g" name="Lemak_g" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Karbohidrat_g" class="block text-sm font-medium text-gray-700">Karbohidrat /100g</label><input type="number" step="0.01" id="Karbohidrat_g" name="Karbohidrat_g" required class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Serat_g" class="block text-sm font-medium text-gray-700">Serat /100g</label><input type="number" step="0.01" id="Serat_g" name="Serat_g" class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                        </div>
+                    </div>
+
+                    <div id="nutrisi-s" class="tab-pane hidden">
+                        <p class="text-gray-500 mb-4">Input nutrisi per sajian (sesuai Berat Sajian Standar).</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div><label for="Kalori_Sajian_g" class="block text-sm font-medium text-gray-700">Kalori /Sajian</label><input type="number" step="0.01" id="Kalori_Sajian_g" name="Kalori_Sajian_g" readonly class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Protein_Sajian_g" class="block text-sm font-medium text-gray-700">Protein /Sajian</label><input type="number" step="0.01" id="Protein_Sajian_g" name="Protein_Sajian_g" readonly class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Lemak_Sajian_g" class="block text-sm font-medium text-gray-700">Lemak /Sajian</label><input type="number" step="0.01" id="Lemak_Sajian_g" name="Lemak_Sajian_g" readonly class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Karbohidrat_Sajian_g" class="block text-sm font-medium text-gray-700">Karbohidrat /Sajian</label><input type="number" step="0.01" id="Karbohidrat_Sajian_g" name="Karbohidrat_Sajian_g" readonly class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                            <div><label for="Serat_Sajian_g" class="block text-sm font-medium text-gray-700">Serat /Sajian</label><input type="number" step="0.01" id="Serat_Sajian_g" name="Serat_Sajian_g" readonly class="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-green-400"></div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="pt-4 flex justify-end space-x-3 border-t border-gray-200">
+                    <button type="button" class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition font-semibold" onclick="hideModal()">
+                        Batal
+                    </button>
+                    <button type="button" onclick="saveMakanan()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold flex items-center justify-center">
+                        <i class='bx bx-save mr-2'></i> <span id="saveButtonText">Simpan Data</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/kelola.js"></script>
+
+    <script>
+    function updateNutrisiSajianLive() {
+        const berat = parseFloat(document.getElementById('Berat_Sajian_Standar_g').value) || 0;
+        const fields100g = ['Kalori_g','Protein_g','Lemak_g','Karbohidrat_g','Serat_g'];
+        const fieldsSajian = ['Kalori_Sajian_g','Protein_Sajian_g','Lemak_Sajian_g','Karbohidrat_Sajian_g','Serat_Sajian_g'];
+
+        fields100g.forEach((field, i) => {
+            const val100 = parseFloat(document.getElementById(field)?.value) || 0;
+            document.getElementById(fieldsSajian[i]).value = (val100 * berat / 100).toFixed(2);
+        });
+    }
+
+    // Pasang event listener agar otomatis update saat user input
+    ['Berat_Sajian_Standar_g','Kalori_g','Protein_g','Lemak_g','Karbohidrat_g','Serat_g'].forEach(id => {
+        document.getElementById(id)?.addEventListener('input', updateNutrisiSajianLive);
+    });
+        // Logika sederhana untuk Tab Switching (Karena tidak menggunakan Bootstrap JS)
+        document.getElementById('tabNav').addEventListener('click', function(e) {
+            if (e.target.classList.contains('tab-button')) {
+                const targetId = e.target.getAttribute('data-target');
+                
+                // 1. Nonaktifkan semua tombol dan sembunyikan semua pane
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+
+                // 2. Aktifkan tombol yang diklik dan tampilkan pane yang sesuai
+                e.target.classList.add('active');
+                document.getElementById(targetId).classList.remove('hidden');
+            }
+        });
+        
+        // Fungsi untuk menyembunyikan modal (dipanggil oleh tombol tutup/batal)
+        function hideModal() {
+            document.getElementById('mainDataModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

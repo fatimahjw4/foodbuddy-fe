@@ -1,0 +1,836 @@
+/* ======================================================
+   GLOBAL
+====================================================== */
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ======================================================
+   LOGIN ADMIN
+====================================================== */
+body.login-page {
+  background: linear-gradient(135deg, #43a047 0%, #f9a825 100%);
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  padding: 1.8rem 2rem;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-card h3 { color: #2e7d32; font-weight: 600; margin-bottom: 1.2rem; font-size: 1.25rem; }
+.form-label { font-weight: 500; color: #333; font-size: 0.9rem; }
+.form-control { border-radius: 8px; border: 1px solid #ccc; padding: 0.45rem 0.7rem; font-size: 0.9rem; transition: all 0.3s ease; }
+.form-control:focus { border-color: #43a047; box-shadow: 0 0 0 0.2rem rgba(67, 160, 71, 0.25); }
+.btn-login { background: #2e7d32; border: none; border-radius: 8px; padding: 0.45rem; font-weight: 500; color: #fff; font-size: 0.9rem; transition: all 0.3s ease; }
+.btn-login:hover { background: #256628; transform: translateY(-1px); }
+.alert { border-radius: 8px; font-size: 0.85rem; padding: 0.4rem 0.6rem; display:none; }
+.logo-circle { background: #43a047; color: #fff; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.6rem; margin: 0 auto 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+p { margin-top: 1rem; font-size: 0.8rem; color: #777; }
+
+
+/* ======================================================
+   ADMIN DASHBOARD & SIDEBAR
+====================================================== */
+.sidebar {
+  background-color: #16a34a;
+}
+
+.sidebar a.active {
+  background-color: #f97316;
+}
+
+/* ======================================================
+   ADMIN TABLE & MODAL
+====================================================== */
+table {
+  font-size: 15px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px 8px;
+}
+
+th {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Tabs manual */
+.tab-button.active {
+  border-bottom: 3px solid #f97316;
+  color: #f97316;
+}
+
+/* ======================================================
+   ADMIN PROFILE
+====================================================== */
+.profile-img {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.profile-img.loaded {
+  opacity: 1;
+}
+
+/* ======================================================
+   BERANDA (USER PAGE) — DISINI DIUBAH / DIPERBARUI
+====================================================== */
+
+/* ----------------- GLOBAL ----------------- */
+body.user-page {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+nav {
+  z-index: 1000;
+}
+
+#mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* ================= HERO ================= */
+section.relative.h-screen {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+section.relative.h-screen img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+section.relative.h-screen > .bg-black.bg-opacity-60 {
+  z-index: 1;
+}
+
+section.relative.h-screen .relative.z-10 {
+  z-index: 2;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: left;
+}
+
+section.relative.h-screen h1 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+section.relative.h-screen p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  color: #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+section.relative.h-screen a.border-gradient-to-r {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  border-radius: 0.75rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+section.relative.h-screen a.border-gradient-to-r:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(16,185,129,0.25);
+}
+
+/* Floating Bubbles */
+section.relative.h-screen .bubble {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.25;
+  animation: float 12s ease-in-out infinite;
+  filter: blur(1px);
+  z-index: 0;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+}
+
+.bubble {
+  animation: float 12s ease-in-out infinite, rotate 20s linear infinite, scaleBounce 6s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scaleBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.bubble-delay-1 { animation-delay: 2s; }
+.bubble-delay-2 { animation-delay: 4s; }
+
+/* ================= TENTANG ================= */
+#tentang {
+  padding: 4rem 1rem;
+}
+
+#tentang h2 {
+  font-size: clamp(1.8rem, 4vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+#tentang .md:w-1 {
+  width: 100%;
+}
+
+#tentang .relative.rounded-xl p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+/* Feature Cards */
+#tentang .grid div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#tentang .grid div:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
+/* ================= INSPIRASI & ARTIKEL ================= */
+section.py-20 {
+  padding: 4rem 1rem;
+}
+
+section.py-20 h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1f2937;
+}
+
+
+/* Cards */
+article {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+article img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Tags */
+article span {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Efek dasar fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* Delay untuk stagger efek */
+.fade-in-delay-1 { animation-delay: 0.3s; }
+.fade-in-delay-2 { animation-delay: 0.6s; }
+.fade-in-delay-3 { animation-delay: 0.9s; }
+
+/* Keyframes animasi */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.7s ease-out;
+}
+.card-animate.opacity-100 {
+  opacity: 1;
+}
+.card-animate.translate-y-0 {
+  transform: translateY(0);
+}
+
+
+/* ======================================================
+   MENU REKOMENDASI USER
+====================================================== */
+body.recommendation-page {
+  background-color: #ecfdf5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3Cpath d='M75 16L40 51 5 16V0h70v16zm0 48l-35-35-35 35V80h70V64z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  background-repeat: repeat;
+  padding-top: 80px;
+}
+
+.meal-card img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Input */
+.input-field {
+  transition: all 0.2s;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Loader */
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #10b981;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Choice Card */
+.choice-card {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #e5e7eb;
+}
+
+.choice-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.08);
+}
+
+.choice-card.selected {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2),
+              0 4px 6px -4px rgba(16, 185, 129, 0.1);
+}
+
+#genderSelectionContainer {
+  display: flex;
+  gap: 1rem;           /* jarak antar kartu */
+  justify-content: center;
+  flex-wrap: wrap;     /* biar bisa turun di layar kecil */
+  margin-top: 0.5rem;
+}
+
+/* Step Indicator */
+.step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #4b5563;
+  background-color: #e5e7eb;
+  border: 2px solid #e5e7eb;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.step-dot.active {
+  background-color: #10b981;
+  color: white;
+  transform: scale(1.1);
+  border-color: #059669;
+}
+
+.step-dot.completed {
+  background-color: #a7f3d0;
+  color: #065f46;
+  border-color: #065f46;
+  font-size: 0;
+  position: relative;
+}
+
+.step-dot.completed::after {
+  content: "✓";
+  font-size: 18px;
+  position: absolute;
+}
+
+.step-line {
+  background-color: #d1d5db;
+}
+
+.step-line.completed-line {
+  background: linear-gradient(to right, #10b988, #84cc16);
+}
+
+/* Output Animation */
+.meal-section {
+  width: 320px;          /* KUNCI WIDTH */
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, #ffffff, #f0fdf4);
+  border: 1px solid #d1fae5;
+  box-shadow: 0 12px 24px rgba(16,185,129,0.12);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.meal-section h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #065f46;
+}
+
+.meal-section header {
+  border-bottom: 1px dashed #d1fae5;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-item {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-2px);
+  background-color: #f0fdf4;
+}
+
+/* Badge */
+.addon-badge {
+  background: linear-gradient(to right, #fb923c, #f97316);
+  color: white;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.alternative-text {
+  font-style: italic;
+  color: #6b7280;
+}
+
+.macro-pill {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+#summary {
+  box-shadow: 0 10px 25px rgba(16,185,129,0.25);
+}
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.meal-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.menu-item + .menu-item {
+  margin-top: 0.5rem;
+}
+
+.portion-text {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.menu-item:hover {
+  transform: translateY(-2px);
+  background-color: #f0fdf4;
+}
+
+.addon-badge {
+  background: linear-gradient(to right, #fb923c, #f97316);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+}
+
+#mealContainer {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+#mealContainer::-webkit-scrollbar {
+  height: 6px;
+}
+
+#mealContainer::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 999px;
+}
+
+#mealContainer > .meal-section {
+  scroll-snap-align: center;
+}
+
+/* Tombol utama (Reroll / Cari Menu Lain) */
+.btn-primary {
+  background: linear-gradient(90deg, #10b981, #34d399); /* gradient hijau lebih hidup */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Tombol sekunder (Reset Profil) */
+.btn-secondary {
+  background: #f0fdf4;
+  color: #065f46;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+  background: #dcfce7; /* sedikit lebih terang saat hover */
+}
+
+/* Tombol Step Wizard */
+#prevBtn, #nextBtn {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 0.75rem; /* rounded-lg */
+  padding: 0.75rem 1.5rem; /* py-3 px-6 */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+#prevBtn {
+  background-color: #d1d5db; /* bg-gray-300 */
+  color: #374151; /* text-gray-700 */
+}
+
+#prevBtn:hover {
+  background-color: #9ca3af; /* hover:bg-gray-400 */
+}
+
+#prevBtn.hidden {
+  display: none;
+}
+
+#nextBtn {
+  background: linear-gradient(90deg, #10b981, #84cc16); /* from-green-500 to-lime-500 */
+  color: white;
+}
+
+#nextBtn:hover {
+  background: linear-gradient(90deg, #059669, #65a30d); /* hover: darker */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(16,185,129,0.35);
+}
+
+/* Icon spacing */
+#prevBtn svg, #nextBtn svg {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+}
+
+/* Tombol Submit Wizard */
+#submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 0.75rem; /* rounded-lg */
+  padding: 0.75rem 2rem; /* py-3 px-8 */
+  background: linear-gradient(90deg, #059669, #84cc16); /* from-green-600 to-lime-600 */
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.35);
+  cursor: pointer;
+}
+
+#submitBtn:hover {
+  background: linear-gradient(90deg, #047857, #65a30d); /* hover gradient lebih gelap */
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.45);
+}
+
+/* Icon spacing */
+#submitBtn i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+
+/* ================= FOOTER ================= */
+footer {
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+footer h3 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+/* ======================================================
+   RESPONSIVE — USER ONLY
+====================================================== */
+@media (max-width: 1024px) {
+  section.relative.h-screen .relative.z-10 {
+    text-align: center;
+  }
+  #tentang .md:flex-row {
+    flex-direction: column;
+  }
+  #tentang .grid.md:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  section.relative.h-screen h1 {
+    font-size: 2rem;
+  }
+
+  section.relative.h-screen p {
+    font-size: 1rem;
+  }
+
+  section.relative.h-screen a.border-gradient-to-r {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .login-card {
+    max-width: 90%;
+  }
+
+  .step-dot {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  #mealContainer {
+    scroll-snap-type: x mandatory;
+  }
+
+  .meal-section {
+    width: 280px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+
+  section.relative.h-screen h1 {
+    font-size: 1.6rem;
+  }
+
+  section.relative.h-screen p {
+    font-size: 0.9rem;
+  }
+
+  section.relative.h-screen a.border-gradient-to-r {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .meal-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .step-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .choice-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .choice-card span.text-3xl {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+ 
+  .input-field {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .flex.justify-between.mt-6.gap-4 {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .meal-section {
+    width: 90%; /* atau max-width: 280px; */
+    flex-shrink: 0;
+  }
+
+  #stepIndicator {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+ #wizardContainer, #recommendationContainer {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  #prevBtn, #nextBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  #nextBtn {
+    margin-left: 0; /* hilangkan ml-auto */
+  }
+
+  #prevBtn svg, #nextBtn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+   #submitBtn {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    justify-content: center;
+  }
+
+  #submitBtn i {
+    margin-right: 0.4rem;
+    font-size: 1rem;
+  }
+}
+
+
+
+
